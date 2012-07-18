@@ -1,0 +1,59 @@
+﻿@model MyTestPoject.Authorization.Models.RegisterViewModel
+
+
+<script src="@Url.Content("~/Scripts/jquery-ui-1.8.11.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.ui.datepicker.min.js")" type="text/javascript"></script>
+
+<script>
+    $(function () {
+        $("#datepicker").datepicker();
+        $("#datepicker").datepicker("option", "dateFormat", "yy-mm-dd");           
+    });
+</script>
+
+@{
+    using (Html.BeginForm())
+    {
+        <div>
+            <fieldset>
+                <legend>Please enter an registration information.</legend>
+                <div style="width: 300">
+                    @Html.LabelFor(x => x.FirstName)
+                    @Html.TextBoxFor( x => x.FirstName)
+                    @Html.ValidationMessageFor(x => x.FirstName)
+                </div>
+                <div style="width: 300">
+                    @Html.LabelFor(x => x.LastName)
+                    @Html.TextBoxFor( x => x.LastName)
+                    @Html.ValidationMessageFor(x => x.LastName)
+                </div>
+                <div style="width: 300">
+                    @Html.LabelFor(x => x.EMail)
+                    @Html.TextBoxFor( x => x.EMail)
+                    @Html.ValidationMessageFor(x => x.EMail)
+                </div>         
+                <div style="width: 300">
+                    @Html.LabelFor(x => x.Password)
+                    @Html.PasswordFor( x => x.Password)
+                    @Html.ValidationMessageFor(x => x.Password)
+                </div>           
+                <div style="width: 300">
+                    @Html.LabelFor(x => x.ConfirmPassword)
+                    @Html.PasswordFor(x => x.ConfirmPassword)
+                    @Html.ValidationMessageFor(x => x.ConfirmPassword)
+                </div> 
+                <div style="width: 300">
+                    @Html.LabelFor(x => x.DayOfBirth)
+                    @Html.TextBoxFor(x => x.DayOfBirth, new { id = "datepicker" })
+                </div>
+                <div style="width: 300">
+                    @Html.DropDownListFor(x => x.Gender, Model.PossibleGenders,"Choose...")
+                </div>           
+                <div style="width: 300">
+                    @Html.DropDownListFor(x => x.MatrialStatus, Model.PossibleMatrialStatus,"Choose...")
+                </div>  
+                <input type="submit" value = "Lets go!"/>
+            </fieldset>
+        </div>
+    }
+}
